@@ -1,3 +1,4 @@
 bundle/*
 /.netrwhist
-site/autoload/plug.vim
+autoload/plug.vim
+plugged/*
