@@ -1,13 +1,17 @@
 call plug#begin()
 
+Plug 'digitaltoad/vim-jade'
 Plug 'elzr/vim-json'
 Plug 'gabrielelana/vim-markdown'
 Plug 'kchmck/vim-coffee-script'
+Plug 'neomake/neomake'
 Plug 'rakr/vim-one'
 Plug 'scrooloose/nerdtree'
 Plug 'StanAngeloff/php.vim'
+Plug 'SirVer/ultisnips'
 Plug 'tmux-plugins/tpm'
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
 
