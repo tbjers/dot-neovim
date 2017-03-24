@@ -8,6 +8,6 @@ pkg.link() {
 
 pkg.install() {
   # install vim-plug
-  mkdir -p "$PKG_PATH/site/autoload"
-  curl -LSso "$PKG_PATH/site/autoload/plug.vim" https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  mkdir -p "$PKG_PATH/autoload"
+  curl -LSso "$PKG_PATH/autoload/plug.vim" https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 }
