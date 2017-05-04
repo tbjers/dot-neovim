@@ -1,10 +1,22 @@
 # tbjers/dot-neovim
 My [NeoVim][neovim] dotfiles, [ellipsis][ellipsis] compatible.
 
+## Prerequisites
+
+This package does not install NeoVim for you.
+
+Recommended installation for Mac:
+
+```shell
+$ brew install neovim go
+$ pip3 install neovim
+$ gem install neovim
+```
+
 ## Install
 Clone and symlink or install with [ellipsis][ellipsis]:
 
-```
+```shell
 $ ellipsis install tbjers/neovim
 ```
 
