@@ -16,6 +16,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer --tern-completer' }
+Plug 'edkolev/tmuxline.vim'
 
 call plug#end()
 
@@ -40,7 +41,7 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
-set background=light
+set background=dark
 colorscheme one
 let g:airline_theme='one'
 let g:one_allow_italics = 1
@@ -48,6 +49,7 @@ let g:one_allow_italics = 1
 let g:airline_powerline_fonts=1
 let g:airline_enable_fugitive=1
 let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tmuxline#enabled=0
 
 let g:vim_markdown_folding_disabled=1
 
