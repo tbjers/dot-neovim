@@ -41,7 +41,12 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
-set background=dark
+let itermScheme=$ITERM_PROFILE
+if itermScheme == 'Light'
+  set background=light
+else
+  set background=dark
+end
 colorscheme one
 let g:airline_theme='one'
 let g:one_allow_italics = 1
