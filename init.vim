@@ -1,10 +1,11 @@
+let g:has_async = v:version >= 800 || has('nvim')
+
 call plug#begin()
 
 Plug 'digitaltoad/vim-jade'
 Plug 'elzr/vim-json'
 Plug 'gabrielelana/vim-markdown'
 Plug 'kchmck/vim-coffee-script'
-Plug 'neomake/neomake'
 Plug 'rakr/vim-one'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -17,6 +18,10 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer --tern-completer' }
 Plug 'edkolev/tmuxline.vim'
+
+if g:has_async
+	Plug 'w0rp/ale'
+endif
 
 call plug#end()
 
@@ -91,3 +96,19 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" ALE linting events
+if g:has_async
+  set updatetime=1000
+  let g:ale_lint_on_text_changed = 0
+  autocmd CursorHold * call ale#Lint()
+  autocmd CursorHoldI * call ale#Lint()
+  autocmd InsertEnter * call ale#Lint()
+  autocmd InsertLeave * call ale#Lint()
+else
+  echoerr "The thoughtbot dotfiles require NeoVim or Vim 8"
+endif
+
+nnoremap ]r :ALENextWrap<CR>
+nnoremap [r :ALEPreviousWrap<CR>
+
