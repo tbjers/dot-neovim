@@ -104,12 +104,12 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 " ALE linting events
 if g:has_async
-  set updatetime=1000
-  let g:ale_lint_on_text_changed = 0
-  autocmd CursorHold * call ale#Lint()
-  autocmd CursorHoldI * call ale#Lint()
-  autocmd InsertEnter * call ale#Lint()
-  autocmd InsertLeave * call ale#Lint()
+  set updatetime=250
+  let g:ale_lint_on_text_changed = 1
+  autocmd CursorHold * call ale#Queue(0)
+  autocmd CursorHoldI * call ale#Queue(0)
+  autocmd InsertEnter * call ale#Queue(0)
+  autocmd InsertLeave * call ale#Queue(0)
 else
   echoerr "These dotfiles require NeoVim or Vim 8"
 endif
@@ -126,8 +126,9 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
-let g:ale_fixers = {
-\  'javascript': ['eslint'],
-\}
-let g:ale_fix_on_save = 1
+let g:ale_linters = {}
+let g:ale_linters.javascript = ['eslint']
+let g:ale_fixers = {}
+let g:ale_fixers.javascript = ['eslint', 'prettier']
 
+let g:ale_fix_on_save = 1
