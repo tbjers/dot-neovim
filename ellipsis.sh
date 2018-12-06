@@ -29,3 +29,8 @@ pkg.install() {
 Please run :PlugInstall when you start `nvim`.
 EOF
 }
+
+pkg.pull() {
+  mkdir -p "$PKG_PATH/autoload"
+  curl -LSso "$PKG_PATH/autoload/plug.vim" https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+}
