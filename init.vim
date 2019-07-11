@@ -16,11 +16,12 @@ Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer --tern-completer' }
 Plug 'edkolev/tmuxline.vim'
 Plug 'Quramy/tsuquyomi'
 Plug 'leafgarland/typescript-vim'
 Plug 'Shougo/vimproc.vim'
+Plug 'davidhalter/jedi-vim'
+Plug 'cespare/vim-toml'
 
 if g:has_async
 	Plug 'w0rp/ale'
@@ -91,16 +92,21 @@ nnoremap <silent> <C-^> :bn<CR>
 nnoremap <silent> <leader>w :bw<CR>
 nnoremap <silent> <C-s> :update<CR>
 nnoremap <silent> <leader>l :set list!<CR>
-nnoremap <silent> <C-\> :NERDTreeToggle<CR>
+"nnoremap <silent> <C-\> :NERDTreeToggle<CR>
 
 autocmd BufNewFile,BufRead {Gemfile,Vagrantfile,Berksfile,Podfile} set filetype=ruby
 
 let g:jsx_ext_required = 0
 
+" NERDTree config
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+let NERDTreeQuitOnOpen = 1
+nnoremap <silent> <Leader>f :NERDTreeToggle<CR>
+nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 
 " ALE linting events
 if g:has_async
@@ -132,3 +138,5 @@ let g:ale_fixers = {}
 let g:ale_fixers.javascript = ['eslint', 'prettier']
 
 let g:ale_fix_on_save = 1
+
+let g:python3_host_prog = '/home/tbjers/.pyenv/versions/neovim3/bin/python'
