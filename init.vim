@@ -64,7 +64,6 @@ let g:airline_powerline_fonts=1
 let g:airline_enable_fugitive=1
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tmuxline#enabled=0
-
 let g:airline#extensions#ale#enabled = 1
 
 let g:vim_markdown_folding_disabled=1
@@ -92,7 +91,6 @@ nnoremap <silent> <C-^> :bn<CR>
 nnoremap <silent> <leader>w :bw<CR>
 nnoremap <silent> <C-s> :update<CR>
 nnoremap <silent> <leader>l :set list!<CR>
-"nnoremap <silent> <C-\> :NERDTreeToggle<CR>
 
 autocmd BufNewFile,BufRead {Gemfile,Vagrantfile,Berksfile,Podfile} set filetype=ruby
 
@@ -105,6 +103,20 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDTreeQuitOnOpen = 1
+let g:NERDTreeIndicatorMapCustom = {
+  \ "Modified"  : "✹",
+  \ "Staged"    : "✚",
+  \ "Untracked" : "✭",
+  \ "Renamed"   : "➜",
+  \ "Unmerged"  : "═",
+  \ "Deleted"   : "✖",
+  \ "Dirty"     : "✗",
+  \ "Clean"     : "✔︎",
+  \ 'Ignored'   : '☒',
+  \ "Unknown"   : "?"
+  \ }
+
+
 nnoremap <silent> <Leader>f :NERDTreeToggle<CR>
 nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 
@@ -132,11 +144,23 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
+" let g:ale_sign_error = '>>'
+" let g:ale_sign_warning = '--'
+let g:ale_sign_error = '●'
+let g:ale_sign_warning = '.'
+let g:ale_lint_on_enter = 1
+let g:ale_lint_on_save = 1
+let g:ale_sign_column_always = 1
+let g:ale_fix_on_save = 1
+let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '']
+set statusline+=%=
+set statusline+=\ %{ALEGetStatusLine()}
+
 let g:ale_linters = {}
 let g:ale_linters.javascript = ['eslint']
+let g:ale_linters.python = ['pylint']
 let g:ale_fixers = {}
 let g:ale_fixers.javascript = ['eslint', 'prettier']
-
-let g:ale_fix_on_save = 1
+let g:ale_fixers.python = ['black']
 
 let g:python3_host_prog = '/home/tbjers/.pyenv/versions/neovim3/bin/python'
